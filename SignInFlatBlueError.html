@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--下方改成貴校的title-->
+    <title>
+        大安國小無線網路認證
+    </title>
+    <!-- Bootstrap CDN CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: #ecf0f1;
+            font-family: Arial, Microsoft JhengHei, MingLiU, sans-serif;
+        }
+        .login {
+            width: 100%;
+            padding: 25px;
+            margin: 25px auto;
+            background-color: #2c3e50;
+        }
+        .logo {
+            margin-top: 25px;
+        }
+        .rule {
+            font-size: 14px;
+        }
+        label {
+            font-size: 24px;
+            color: #fff;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"] {
+            width: 100%;
+            margin: 10px 0 10px 0;
+            padding: 15px;
+            border: solid 1px #ccc;
+            font-size: 16px;
+            background-color: #ecf0f1;
+        }
+        input[type="submit"],
+        input[type="button"] {
+            position: relative;
+            width: 100%;
+            background-color: #3498db;
+            border: none;
+            color: #FFF;
+            -webkit-transition: all 0.1s;
+            -moz-transition: all 0.1s;
+            transition: all 0.1s;
+            -webkit-box-shadow: 0px 9px 0px #2980b9;
+            -moz-box-shadow: 0px 9px 0px #2980b9;
+            box-shadow: 0px 9px 0px #2980b9;
+        }
+        input[type="submit"]:active,
+        input[type="button"]:active {
+            -webkit-transition: all 0.1s;
+            -moz-transition: all 0.1s;
+            transition: all 0.1s;
+            position: relative;
+            top: 7px;
+            -webkit-box-shadow: 0px 2px 0px #16a085;
+            -moz-box-shadow: 0px 2px 0px #16a085;
+            box-shadow: 0px 2px 0px #16a085;
+        }
+        #alert{
+            color: #F1C40F;
+            background-color: #E74C3C;
+            border-color: #C0392B;
+            border-radius: 0px;
+        }
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js">
+    </script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js">
+    </script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <div class="col-sm-2 col-md-3">
+    </div>
+    <div class="col-xs-12 col-sm-8 col-md-6">
+        <div class="logo">
+            <!--下方daan_logo請替換成貴校logo檔名，並上傳至Fortigate 200D-->
+            <img src="%%IMAGE:daan_logo%%" class="img-responsive center-block" alt="logo">
+        </div>
+        <div class="login">
+            <form action="%%AUTH_POST_URL%%" method="post">
+                <input type="hidden" name="%%REDIRID%%" value="%%PROTURI%%">
+                <input type="hidden" name="%%MAGICID%%" value="%%MAGICVAL%%">
+                <input type="hidden" name="%%METHODID%%" value="%%METHODVAL%%">
+                <div class="alert alert-danger" role="alert" id="alert">
+                    帳號或密碼有誤，請重新輸入！
+                </div>
+                <div class="form-group">
+                    <label for="username">
+                        帳號
+                    </label>
+                    <!--下方placeholder可以根據貴校認證方式更改提示-->
+                    <input name="%%USERNAMEID%%" id="username" type="text" autocorrect="off" autocapitalize="off"
+                           placeholder="校內或教育局帳號" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">
+                        密碼
+                    </label>
+                    <input name="%%PASSWORDID%%" id="password" type="password" autocomplete="off" required>
+                </div>
+                <div class="checkbox">
+                    <label class="rule">
+                        <input type="checkbox" checked required>
+                        我已同意遵守
+                        <a href="http://edu.law.moe.gov.tw/LawContentDetails.aspx?id=GL000056&KeyWordHL="
+                           target="_blank">
+                            台灣學術網路規範
+                        </a>
+                    </label>
+                </div>
+                <input type="submit" value="登入"/>
+            </form>
+        </div>
+        <div>
+            <p class="text-center">2016 © 大安國小系管師陳永偉 | ALL Rights Reserved.</p>
+        </div>
+    </div>
+    <div class="col-sm-2 col-md-3">
+    </div>
+</div>
+<!--JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+</body>
+</html>

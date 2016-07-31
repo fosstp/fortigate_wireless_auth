@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--下方改成貴校的title-->
+    <title>
+        大安國小無線網路認證
+    </title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <style>
+        body {
+            padding-top: 30px;
+            font-family: Arial, Microsoft JhengHei, MingLiU, sans-serif;
+        }
+        .panel-login {
+            border-color: #ccc;
+            -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+        }
+        .panel-login > .panel-heading {
+            color: #00415d;
+            background-color: #fff;
+            border-color: #fff;
+            text-align: center;
+        }
+        .panel-login > .panel-heading a {
+            text-decoration: none;
+            color: #666;
+            font-weight: bold;
+            font-size: 15px;
+            -webkit-transition: all 0.1s linear;
+            -moz-transition: all 0.1s linear;
+            transition: all 0.1s linear;
+        }
+        .panel-login > .panel-heading a.active {
+            color: #029f5b;
+            font-size: 18px;
+        }
+        .panel-login > .panel-heading hr {
+            margin-top: 10px;
+            margin-bottom: 0px;
+            clear: both;
+            border: 0;
+            height: 1px;
+            background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+            background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+            background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+            background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+        }
+        .panel-login input[type="text"], .panel-login input[type="email"], .panel-login input[type="password"] {
+            height: 50px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            -webkit-transition: all 0.1s linear;
+            -moz-transition: all 0.1s linear;
+            transition: all 0.1s linear;
+        }
+        .btn-login {
+            background-color: #59B2E0;
+            outline: none;
+            color: #fff;
+            font-size: 14px;
+            height: auto;
+            font-weight: normal;
+            padding: 14px 0;
+            text-transform: uppercase;
+            border-color: #59B2E6;
+        }
+        .btn-login:hover,
+        .btn-login:focus {
+            color: #fff;
+            background-color: #53A3CD;
+            border-color: #53A3CD;
+        }
+        .logo {
+            margin-bottom: 25px;
+        }
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js">
+    </script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js">
+    </script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="logo">
+                <!--下方daan_logo請替換成貴校logo檔名，並上傳至Fortigate 200D-->
+                <img src="%%IMAGE:daan_logo%%" class="img-responsive center-block" alt="logo">
+            </div>
+            <div class="panel panel-login">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <!--下方為分頁標籤，可以根據貴校認證方式更改-->
+                            <a href="#" class="active" id="login-form-link">一般帳號登入</a>
+                        </div>
+                        <div class="col-xs-6">
+                            <!--下方為分頁標籤，可以根據貴校認證方式更改-->
+                            <a href="#" id="google-login-form-link">Google帳號登入</a>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form id="login-form" action="%%AUTH_POST_URL%%" method="post" role="form"
+                                  style="display: block;">
+                                <input type="hidden" name="%%REDIRID%%" value="%%PROTURI%%">
+                                <input type="hidden" name="%%MAGICID%%" value="%%MAGICVAL%%">
+                                <input type="hidden" name="%%METHODID%%" value="%%METHODVAL%%">
+                                <div class="alert alert-danger" role="alert">
+                                    帳號或密碼有誤，請重新輸入！
+                                </div>
+                                <div class="form-group">
+                                    <!--下方placeholder可以根據貴校認證方式更改提示-->
+                                    <input type="text" name="%%USERNAMEID%%" id="username" tabindex="1"
+                                           class="form-control" placeholder="校內或教育局帳號" autocorrect="off"
+                                           autocapitalize="off" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="%%PASSWORDID%%" id="password" tabindex="2"
+                                           class="form-control" placeholder="密碼" autocomplete="off" required>
+                                </div>
+                                <div class="checkbox">
+                                    <label class="rule">
+                                        <input type="checkbox" checked required>
+                                        我已同意遵守
+                                        <a href="http://edu.law.moe.gov.tw/LawContentDetails.aspx?id=GL000056&KeyWordHL="
+                                           target="_blank">
+                                            台灣學術網路規範
+                                        </a>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="submit" name="login-submit" id="login-submit" tabindex="4"
+                                                   class="form-control btn btn-login" value="登入">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <form id="google-login-form" action="%%AUTH_POST_URL%%" method="post" role="form"
+                                  style="display: none;" onsubmit="addDomain();">
+                                <input type="hidden" name="%%REDIRID%%" value="%%PROTURI%%">
+                                <input type="hidden" name="%%MAGICID%%" value="%%MAGICVAL%%">
+                                <input type="hidden" name="%%METHODID%%" value="%%METHODVAL%%">
+                                <div class="form-group">
+                                    <!--下方placeholder可以根據貴校認證方式更改提示-->
+                                    <input type="text" name="%%USERNAMEID%%" id="username-Google" tabindex="1"
+                                           class="form-control" placeholder="Google帳號" autocorrect="off"
+                                           autocapitalize="off" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="%%PASSWORDID%%" id="password-Google" tabindex="2"
+                                           class="form-control" placeholder="密碼" autocomplete="off" required>
+                                </div>
+                                <div class="checkbox">
+                                    <label class="rule">
+                                        <input type="checkbox" checked required>
+                                        我已同意遵守
+                                        <a href="http://edu.law.moe.gov.tw/LawContentDetails.aspx?id=GL000056&KeyWordHL="
+                                           target="_blank">
+                                            台灣學術網路規範
+                                        </a>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-sm-offset-3">
+                                            <input type="submit" name="login-submit-Google" id="login-submit-Google"
+                                                   tabindex="4" class="form-control btn btn-login" value="登入">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p class="text-center">2016 © 大安國小系管師陳永偉 | ALL Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+<script>
+    $(function () {
+        $('#login-form-link').click(function (e) {
+            $("#login-form").delay(100).fadeIn(100);
+            $("#google-login-form").fadeOut(100);
+            $('#google-login-form-link').removeClass('active');
+            $(this).addClass('active');
+            e.preventDefault();
+        });
+        $('#google-login-form-link').click(function (e) {
+            $("#google-login-form").delay(100).fadeIn(100);
+            $("#login-form").fadeOut(100);
+            $('#login-form-link').removeClass('active');
+            $(this).addClass('active');
+            e.preventDefault();
+        });
+    });
+</script>
+<script>
+    window.onload = function () {
+        document.getElementById("username-Google").value = "";
+    }
+</script>
+<script>
+    function addDomain() {
+        document.getElementById("username-Google").value = document.getElementById("username-Google").value + "@taes.tp.edu.tw";    //自行更改貴校google認證網域名稱
+        return true;
+    }
+</script>
+</body>
+</html>
